@@ -14,7 +14,8 @@ class Card:
 	def show(self): 
 		print("{} of {}".format(self.value, self.suit))
 
-# Construct Deck 
+
+# Construct Deck with 52 cards, 4 suits and 13 cards per suit
 class Deck: 
 	def __init__(self):
 		self.cards = []
@@ -23,15 +24,24 @@ class Deck:
 	def build(self): 
 		for s in ["Clubs (♣)", "Diamonds (♦)", "Hearts (♥)", "Spades (♠)"]:
 			for v in range(1, 14):
-				self.cards.append(Card(s, v))
+				if v <= 10:
+					self.cards.append(Card(s, v))
+				elif v == 11:
+					self.cards.append(Card(s, "Jack"))
+				elif v == 12: 
+					self.cards.append(Card(s, "Queen"))
+				elif v == 13:
+					self.cards.append(Card(s, "King"))
 
+	# Shuffle the deck.
 	def shuffle(self): 
 		for i in range(len(self.cards) -1, 0, -1):
 			r = random.randint(0, i)
 			self.cards[i], self.cards[r] = self.cards[r], self.cards[i]
 
-	def drawCard(self):
-		return self.cards.pop()
+	def drawCard(self, Player):
+		for d in range(1, Player.numberofCards(self)):
+			return self.cards.pop() 
 
 	def show(self): 
 		for c in self.cards: 
@@ -43,8 +53,12 @@ class Player:
 		self.name = name 
 		self.hand = []
 
-	def draw(self, deck):
-		self.hand.append(deck.drawCard())
+	def numberofCards(self):
+		num = int(input("Please input an integer/whole\nnumber between 1 and 40, \nthis will be the number of cards dealt: \n"))
+		return num 
+
+	def draw(self, deck, Player):
+		self.hand.append(deck.drawCard(Player))
 		return self
 
 	def showHand(self): 
@@ -57,7 +71,7 @@ deck = Deck()
 deck.shuffle()
 
 bob = Player("Bob")
-bob.draw(deck)
+bob.draw(deck, Player)
 bob.showHand()
 
 # Construct a Deck instance, with 52 cards.
