@@ -1,9 +1,10 @@
 #   Name: Chris Chavez
-#   Date: 14 JULY 2021
+#   Date: 13 JULY 2021
 #   Class: CMPSC 132
-#   Description: Program allows user to pick a random card from a deck of cards. 
+#   Description: Program deals a random card from a deck of cards. 
 
 import random
+
 
 
 class Card: 
@@ -33,53 +34,50 @@ class Deck:
 				elif v == 13:
 					self.cards.append(Card(s, "King"))
 
-	# Shuffle the deck.
 	def shuffle(self): 
 		for i in range(len(self.cards) -1, 0, -1):
 			r = random.randint(0, i)
 			self.cards[i], self.cards[r] = self.cards[r], self.cards[i]
 
-	def drawCard(self, Player):
-		for d in range(1, Player.numberofCards(self)):
-			return self.cards.pop() 
+	def drawCard(self):
+		return self.cards.pop()
 
 	def show(self): 
 		for c in self.cards: 
 			c.show()
 
-
 class Player: 
 	def __init__(self, name):
 		self.name = name 
 		self.hand = []
+		#self.intro = print("This program allows you to pick a set number of randomly dealt cards. ")
+		#self.num = int(input("Please input an integer/whole\nnumber between 40: \n"))
 
-	def numberofCards(self):
-		num = int(input("Please input an integer/whole\nnumber between 1 and 40, \nthis will be the number of cards dealt: \n"))
-		return num 
-
-	def draw(self, deck, Player):
-		self.hand.append(deck.drawCard(Player))
+	def draw(self, deck):
+		self.hand.append(deck.drawCard())
 		return self
 
 	def showHand(self): 
 		for card in self.hand:
-			card.show()
+			card.show() 
 
 
+if __name__ == '__main__':
 
-deck = Deck()
-deck.shuffle()
+	deck = Deck()
+	deck.shuffle()
 
-bob = Player("Bob")
-bob.draw(deck, Player)
-bob.showHand()
+	intro = print("This program allows you to pick a set number of randomly dealt cards. ")
+	num = int(input("Please input an integer/whole\nnumber between 40: \n"))
+    
+	for i in range(len(num)):
+		chris.draw(deck) 
 
-# Construct a Deck instance, with 52 cards.
-#deck = pydealer.Deck()
+	chris = Player("Chris")
+	#chris.draw(deck) 
+	chris.showHand() 
 
 
-# deck = clubs + diamonds + hearts + spades 
+"""
 
-
-# 
-
+"""
