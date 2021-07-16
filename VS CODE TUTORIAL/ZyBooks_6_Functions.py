@@ -54,3 +54,21 @@ max_sum = find_max(num_a, num_b) + find_max(num_y, num_z)
 
 
 print('max_sum is:', max_sum)
+
+#6.5.1: Program that calculates cylinder volume and surface area by calling a modular function for the cylinder's base.
+
+def calc_circular_base_area(radius):
+   return math.pi * radius * radius
+
+def calc_cylinder_volume(baseRadius, height):
+   return calc_circular_base_area(baseRadius) * height
+
+def calc_cylinder_surface_area(baseRadius, height):
+   return (2 * math.pi * baseRadius * height) + (2 * calc_circular_base_area(baseRadius))
+
+radius = float(input('Enter base radius: '))
+height = float(input('Enter height: '))
+
+print('Cylinder volume: ' + '{:.3f}'.format(calc_cylinder_volume(radius, height)))
+print('Cylinder surface area: ' + '{:.3f}'.format(calc_cylinder_surface_area(radius, height)))
+
