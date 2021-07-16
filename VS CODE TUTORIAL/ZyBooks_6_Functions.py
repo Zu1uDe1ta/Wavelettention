@@ -72,3 +72,83 @@ height = float(input('Enter height: '))
 print('Cylinder volume: ' + '{:.3f}'.format(calc_cylinder_volume(radius, height)))
 print('Cylinder surface area: ' + '{:.3f}'.format(calc_cylinder_surface_area(radius, height)))
 
+
+#6.5.2: Function definition: Volume of a pyramid with modular functions.
+
+def calc_base_area(base_length, base_width):
+   return base_length * base_width
+
+def calc_pyramid_volume(base_length, base_width, pyramid_height):
+    return calc_base_area(base_length, base_width) * pyramid_height * (1/3)
+    
+
+
+# Figure 6.6.1: Using the pass statement in a function stub performs no operation.
+length = float(input())
+width = float(input())
+height = float(input())
+print('Volume for', length, width, height, "is:", calc_pyramid_volume(length, width, height))
+
+
+def steps_to_feet(num_steps):
+    feet_per_step = 3
+    feet = num_steps * feet_per_step
+    return feet
+
+def steps_to_calories(num_steps):
+    pass  
+
+steps = int(input('Enter number of steps walked: '))
+
+feet = steps_to_feet(steps)
+print('Feet:', feet)
+
+calories = steps_to_calories(steps)
+print('Calories:', calories)
+
+# Figure 6.6.2: A function stub using a print statement.
+def steps_to_calories(steps):
+    print('FIXME: finish steps_to_calories')
+    return -1
+
+
+# Figure 6.6.3: Stopping the program using NotImplementedError in a function stub.
+import math
+
+def get_points(num_points):
+    """Get num_points from the user. Return a list of (x,y) tuples."""
+    raise NotImplementedError
+        
+def side_length(p1, p2):
+    return math.sqrt((p2[0] - p1[0])**2 + (p2[1] - p1[1])**2)
+
+def get_perimeter_length(points):
+    perimeter = side_length(points[0], points[1])
+    perimeter += side_length(points[0], points[2])
+    perimeter += side_length(points[1], points[2])
+    return perimeter
+
+coordinates = get_points(3)
+print('Perimeter of triangle:', get_perimeter_length(coordinates))
+
+
+
+# 6.6.1: Function stubs: Statistics.
+def get_user_num():
+    print('FIXME: Finish get_user_num()')
+    return -1
+
+def compute_avg(user_num1, user_num2):
+    print('FIXME: Finish compute_avg()')
+    return -1
+    
+user_num1 = 0
+user_num2 = 0
+avg_result = 0
+
+user_num1 = get_user_num()
+user_num2 = get_user_num()
+avg_result = compute_avg(user_num1, user_num2)
+
+print('Avg:', avg_result)
+
