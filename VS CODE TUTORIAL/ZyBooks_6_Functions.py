@@ -255,3 +255,32 @@ values_list = input().split(',')  # Program receives comma-separated values like
 swap(values_list)
 
 print(values_list)
+
+
+# 6.13.1: Keyword arguments and default parameters.
+def show(a, b, c):
+    print('{}/{}/{}'.format(a, b, c))
+
+show(b=5, c=1, a=7)
+
+
+def show_time(year, month, day, hour, minutes):
+    print('{}\{}\{} {}:{}'.format(month, day, year, hour, minutes))
+
+
+
+def show(a, b, c=6):
+    print('{}-{}-{}'.format(c, a, b))
+
+show(2, 4, c=3)
+show(1, 9)
+
+
+
+def show(a, b=2, c=4):
+    print('{}/{}/{}'.format(c, a, b))
+
+show(b=7, a=8)
+show(c=9, a=5)
+
+show_time(2013, day=24, hour=19, month=2, minutes=35)
