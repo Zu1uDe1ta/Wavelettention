@@ -152,3 +152,106 @@ avg_result = compute_avg(user_num1, user_num2)
 
 print('Avg:', avg_result)
 
+# Figure 6.7.1: Function example: Determining fees given an item selling price for an auction website.
+def calc_ebay_fee(sell_price):
+    """Returns the fees charged by ebay.com given the selling
+    price of fixed-price books, movies, music, or video games.
+    fee is $0.50 to list plus 13% of selling price up to $50.00,
+    5% of amount from $50.01 to $1000.00, and 
+    2% for amount $1000.01 or more."""
+
+    p50 = 0.13  # for amount $50 and lower
+    p50_to_1000 = 0.05  # for $50.01-$1000
+    p1000 = 0.02  # for $1000.01 and higher
+    fee = 0.50  # fee to list item
+
+    if sell_price <= 50:
+        fee  = fee + (sell_price*p50)
+    elif sell_price <= 1000:
+        fee = fee + (50*p50) + ((sell_price-50)*p50_to_1000)
+    else:
+        fee = fee + (50*p50) + ((1000-50)*p50_to_1000) \
+                  + ((sell_price-1000)*p1000)
+
+    return fee
+
+selling_price = float(input('Enter item selling price (ex: 65.00): '))
+print('Ebay fee: $', calc_ebay_fee(selling_price))
+
+
+#6.7.1: Output of functions with branches/loops.
+def compute(numbers):
+    result = 1
+    for num in numbers:
+        result *= num - 3
+    return result
+
+values = [7, 5, 6]
+computed_value = compute(values)
+print(computed_value)
+
+#
+def get_numbers():
+    user_input = input()
+    values = []
+    for token in user_input.split():
+        values.append(int(token))
+    return values
+
+def print_selected_numbers():
+    numbers = get_numbers()
+    for number in numbers:
+        if number < 5:
+            print(number)
+
+print_selected_numbers()
+
+
+# 6.7.2: Function with branch: Popcorn.
+
+def print_popcorn_time(bag_ounces):
+    bag_ounces = int(bag_ounces)
+    if bag_ounces < 3: 
+        print("Too small")
+    elif bag_ounces > 10: 
+        print("Too large")
+    else: 
+        print(str(6 * bag_ounces) + " seconds")
+    
+
+user_ounces = int(input())
+print_popcorn_time(user_ounces)
+
+
+
+
+# 6.9.1: Function errors: Copying one function to create another.
+
+def celsius_to_kelvin(value_celsius):
+    value_kelvin = 0.0
+
+    value_kelvin = value_celsius + 273.15
+    return value_kelvin
+
+def kelvin_to_celsius(value_kelvin):
+    value_celsius = 0.0
+    
+    value_celsius = value_kelvin - 273.15
+    return value_celsius
+
+value_c = 10.0
+print(value_c, 'C is', celsius_to_kelvin(value_c), 'K')
+
+value_k = float(input())
+print(value_k, 'K is', kelvin_to_celsius(value_k), 'C')
+
+
+# 6.12.1: Change order of elements in function list argument.
+def swap(values_list): 
+    values_list[0], values_list[-1] = values_list[-1], values_list[0]
+    return values_list
+
+values_list = input().split(',')  # Program receives comma-separated values like 5,4,12,19
+swap(values_list)
+
+print(values_list)
