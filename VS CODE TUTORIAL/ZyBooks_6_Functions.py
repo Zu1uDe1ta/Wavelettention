@@ -223,6 +223,15 @@ user_ounces = int(input())
 print_popcorn_time(user_ounces)
 
 
+def print_popcorn_time(bag_ounces):
+    if int(bag_ounces) < 3:
+        print('Too small')
+    elif int(bag_ounces) > 10:
+        print('Too large')    
+    else:
+        print(str(6 * int(bag_ounces)) + " seconds")  
+user_ounces = int(input())
+print_popcorn_time(user_ounces)
 
 
 # 6.9.1: Function errors: Copying one function to create another.
@@ -284,3 +293,19 @@ show(b=7, a=8)
 show(c=9, a=5)
 
 show_time(2013, day=24, hour=19, month=2, minutes=35)
+
+
+
+
+def print_shampoo_instructions(user_cycles): 
+    numbers = []
+    if user_cycles < 1:
+        print('Too few')
+    elif user_cycles > 4:
+        print('Too many')    
+    else:
+        for cycle in user_cycles:     
+            number = int(cycle)
+            numbers.append(number)
+            print('{}:Lather and rinse'.format(numbers))
+            number -= 1
